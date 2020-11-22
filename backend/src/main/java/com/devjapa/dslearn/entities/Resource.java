@@ -1,6 +1,8 @@
 package com.devjapa.dslearn.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
@@ -29,9 +32,9 @@ public class Resource implements Serializable {
 	@JoinColumn(name = "offer_id")
 	private Offer offer;
 
-//	@OneToMany(mappedBy = "resource")
-//	private List<Section> sections = new ArrayList<>();
-//	
+	@OneToMany(mappedBy = "resource")
+	private List<Section> sections = new ArrayList<>();
+	
 	public Resource() {
 	}
 
@@ -101,6 +104,10 @@ public class Resource implements Serializable {
 
 	public void setOffer(Offer offer) {
 		this.offer = offer;
+	}	
+
+	public List<Section> getSections() {
+		return sections;
 	}
 
 	@Override
