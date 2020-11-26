@@ -12,34 +12,29 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "tb_section")
-public class Section  implements Serializable{	
+public class Section implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
-	@GeneratedValue( strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String title;
 	private String description;
-	private String position;
+	private Integer position;
 	private String imgUri;
 	
 	@ManyToOne
 	@JoinColumn(name = "resource_id")
-	private Resource resource;	
+	private Resource resource;
 	
 	@ManyToOne
 	@JoinColumn(name = "prerequisite_id")
 	private Section prerequisite;
 	
-//	@OneToMany(mappedBy = "section")
-//	private List<Lesson> lessons = new ArrayList<>();
-	
 	public Section() {
 	}
 
-	
-
-	public Section(Long id, String title, String description, String position, String imgUri, Resource resource,
+	public Section(Long id, String title, String description, Integer position, String imgUri, Resource resource,
 			Section prerequisite) {
 		super();
 		this.id = id;
@@ -75,11 +70,11 @@ public class Section  implements Serializable{
 		this.description = description;
 	}
 
-	public String getPosition() {
+	public Integer getPosition() {
 		return position;
 	}
 
-	public void setPosition(String position) {
+	public void setPosition(Integer position) {
 		this.position = position;
 	}
 
@@ -89,12 +84,12 @@ public class Section  implements Serializable{
 
 	public void setImgUri(String imgUri) {
 		this.imgUri = imgUri;
-	}	
+	}
 
 	public Resource getResource() {
 		return resource;
 	}
-	
+
 	public void setResource(Resource resource) {
 		this.resource = resource;
 	}
@@ -106,8 +101,6 @@ public class Section  implements Serializable{
 	public void setPrerequisite(Section prerequisite) {
 		this.prerequisite = prerequisite;
 	}
-
-
 
 	@Override
 	public int hashCode() {
@@ -132,11 +125,5 @@ public class Section  implements Serializable{
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
-	}
-
-	@Override
-	public String toString() {
-		return "Section [id=" + id + ", title=" + title + ", description=" + description + ", position=" + position
-				+ ", imgUri=" + imgUri + "]";
 	}
 }

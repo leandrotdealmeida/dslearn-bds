@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,25 +13,22 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "tb_course")
-public class Course implements Serializable{	
+public class Course implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
-	@GeneratedValue( strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	@Column(name = "name")
 	private String name;
-	@Column(name = "imgUri")
 	private String imgUri;
-	@Column(name = "imgGrayUri")
 	private String imgGrayUri;
 	
 	@OneToMany(mappedBy = "course")
-	private List<Offer> offers = new ArrayList<>(); 
+	private List<Offer> offers = new ArrayList<>();
 	
-	public Course() {		
+	public Course() {
 	}
-	
+
 	public Course(Long id, String name, String imgUri, String imgGrayUri) {
 		super();
 		this.id = id;
@@ -40,34 +36,42 @@ public class Course implements Serializable{
 		this.imgUri = imgUri;
 		this.imgGrayUri = imgGrayUri;
 	}
+
 	public Long getId() {
 		return id;
 	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
+
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
+
 	public String getImgUri() {
 		return imgUri;
 	}
+
 	public void setImgUri(String imgUri) {
 		this.imgUri = imgUri;
 	}
+
 	public String getImgGrayUri() {
 		return imgGrayUri;
 	}
+
 	public void setImgGrayUri(String imgGrayUri) {
 		this.imgGrayUri = imgGrayUri;
-	}	
-	
+	}
+
 	public List<Offer> getOffers() {
 		return offers;
-	}	
+	}
 
 	@Override
 	public int hashCode() {
@@ -76,6 +80,7 @@ public class Course implements Serializable{
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -92,10 +97,4 @@ public class Course implements Serializable{
 			return false;
 		return true;
 	}
-	
-	@Override
-	public String toString() {
-		return "Course [id=" + id + ", name=" + name + ", imgUri=" + imgUri + ", imgGrayUri=" + imgGrayUri + "]";
-	}	
-
 }

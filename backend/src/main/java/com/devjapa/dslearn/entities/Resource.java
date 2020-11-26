@@ -15,7 +15,6 @@ import javax.persistence.Table;
 
 import com.devjapa.dslearn.entities.enums.ResourceType;
 
-
 @Entity
 @Table(name = "tb_resource")
 public class Resource implements Serializable {
@@ -106,10 +105,6 @@ public class Resource implements Serializable {
 
 	public void setOffer(Offer offer) {
 		this.offer = offer;
-	}	
-
-	public List<Section> getSections() {
-		return sections;
 	}
 
 	@Override
